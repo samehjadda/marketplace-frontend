@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Listing } from '../types';
-import { fakeMyListings } from '../fake-data';
+import { ListingsService } from '../listings.service';
 
-
+interface ListingForm {
+  name: string;
+  description: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-edit-listing-page',
@@ -15,21 +19,26 @@ export class EditListingPageComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private listingsService: ListingsService,
   ){
 
   }
   ngOnInit(): void{
-    const id = this.route.snapshot.paramMap.get('id')
-    let foundListing = fakeMyListings.find(listing => listing.id === id);
-      if (!foundListing) {
-        throw new Error('Listing not found');
-      }
-    this.listing = foundListing;
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id !== null) {
+      this.listingsService.getListingById(id)
+      .subscribe(listing => this.listing = listing);
+    } else {
+      // Handle the case where id is null. For example, you could redirect the user to a 404 page.
+    }
   }
-  onSubmit(): void{
-    alert('Saving Changes')
-    this.router.navigateByUrl('/my-listings')
+
+  onSubmit({ name, description, price }: ListingForm): void{
+    this.listingsService.editListing(this.listing.id, name, description, price)
+    .subscribe(() => {
+      this.router.navigateByUrl('/my-listings')
+    })
   }
 
 }

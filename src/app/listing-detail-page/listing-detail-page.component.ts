@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { fakeListings } from '../fake-data';
 import { Listing } from '../types';
+import { ListingsService } from '../listings.service';
 
 @Component({
   selector: 'app-listing-detail-page',
@@ -10,17 +10,27 @@ import { Listing } from '../types';
 })
 export class ListingDetailPageComponent implements OnInit{
 
+  isLoading: boolean = true;
   listing!: Listing;
-  constructor( private route: ActivatedRoute){
+  constructor( 
+    private route: ActivatedRoute,
+    private listingsService: ListingsService,
+    ){
     
   }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    let listing = fakeListings.find(listing => listing.id === id);
-      if (!listing) {
-        throw new Error('Listing not found');
-      }
-    this.listing = listing;
-
-  }
+    if (id !== null) {
+        this.listingsService.getListingById(id)
+        .subscribe(listing => {
+            this.listing = listing;
+            this.isLoading = false;
+        });
+        this.listingsService.addViewToListing(id)
+        .subscribe(() => console.log('Views updated'));
+    } else {
+        // Handle null id scenario.
+        console.log('id was null');
+    }
+}
 }
