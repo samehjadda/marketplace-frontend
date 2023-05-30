@@ -12,6 +12,11 @@ import { ListingDetailPageComponent } from './listing-detail-page/listing-detail
 import { FormsModule } from '@angular/forms';
 import { ListingDataFormComponent } from './listing-data-form/listing-data-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth'; 
+import 'firebase/compat/auth'; 
+import { GoogleAuthProvider } from 'firebase/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -24,9 +29,11 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     EditListingPageComponent,
     ListingDetailPageComponent,
     ListingDataFormComponent,
-    NavBarComponent
+    NavBarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,
+  AngularFireModule.initializeApp(environment.firebase),
+AngularFireAuthModule],
   providers: [],
   bootstrap: [AppComponent],
 })
