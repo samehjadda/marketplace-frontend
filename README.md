@@ -1,6 +1,15 @@
+### All listings page
+![project2](https://github.com/samehjadda/marketplace-frontend/assets/106566093/d1105ea1-d56d-4142-9fcc-f16d01e56e00)
+### My listings page
+<img width="1408" alt="project2-1" src="https://github.com/samehjadda/marketplace-frontend/assets/106566093/0e507cc5-efc7-4969-9049-2f454a66ae94">
+
+### Listing details page
+<img width="1413" alt="project2-3" src="https://github.com/samehjadda/marketplace-frontend/assets/106566093/ccc8292e-640e-47cf-adde-57610e86480f">
+
+
 # Marketplace
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.3.
+This project was generated with [Angular CLI], it has 2 parts, backend and front end
 
 ## Development server
 
