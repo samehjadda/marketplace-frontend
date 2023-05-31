@@ -1,3 +1,27 @@
+# Project Summary
+
+This project is a comprehensive online marketplace application where users can buy and sell goods. The application follows a microservices architecture and is split into frontend and backend services, each with its responsibilities and functionality.
+
+## Backend
+
+The backend of the application is built on Node.js, with Hapi.js as the chosen framework for building APIs. It utilizes Babel for transpiling ES6+ JavaScript code into a backwards compatible version for older JavaScript environments. It also uses Firebase Authentication for secure user authentication.
+
+The backend communicates with a MySQL database using a custom-made database module. This module exports a db object with methods for connecting to the database, querying the database, and ending the database connection.
+
+The application has a collection of API routes to facilitate the different functionalities of the marketplace such as fetching all listings, creating a listing, editing a listing, deleting a listing, and contacting a seller.
+
+## Frontend
+
+The frontend of the application is built with Angular and uses Firebase Authentication for user authentication. A user can sign in and out using Google's authentication provider.
+
+The user interface comprises multiple components including a contact page, a form for creating and editing listings, a page for viewing the details of a particular listing, a listings page, a personal listings page, and a navigation bar. All these components are arranged and controlled using Angular's robust component-based architecture.
+
+The application uses an AngularFireAuth service to handle user authentication and to provide user details to other components and services. Listings are fetched, created, edited, and deleted using the ListingsService, which communicates with the backend via HTTP APIs.
+
+The application is configured to proxy all API requests to the backend server running on localhost:8000, making the development process more seamless. The frontend and backend communicate using a predefined API, and the frontend updates in real time to reflect any changes to the listings.
+
+In conclusion, this is a robust full-stack application providing a complete buy-and-sell experience to its users, demonstrating a good understanding of different technologies including Node.js, Hapi.js, Angular, Firebase, MySQL, and Docker.
+
 ### All listings page
 ![project2](https://github.com/samehjadda/marketplace-frontend/assets/106566093/d1105ea1-d56d-4142-9fcc-f16d01e56e00)
 ### My listings page
@@ -15,22 +39,3 @@ This project was generated with [Angular CLI], it has 2 parts, backend and front
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
